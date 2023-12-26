@@ -1,27 +1,37 @@
 # 测试配置文件
-# @author <a href="https://github.com/liyupi">程序员鱼皮</a>
-# @from <a href="https://yupi.icu">编程导航知识星球</a>
 server:
   port: 8101
+  servlet:
+    context-path: /api
+    # cookie 30 天过期
+    session:
+      cookie:
+        max-age: 2592000
 spring:
+  # session 配置
+  session:
+    store-type: redis
+    # 30 天过期
+    timeout: 2592000
   # 数据库配置
-  # todo 需替换配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/my_db
+    url: jdbc:mysql://10.0.16.2:3306/xhapi
     username: root
     password: 123456
   # Redis 配置
-  # todo 需替换配置
   redis:
-    database: 1
-    host: localhost
+    database: 2
+    host: 10.0.16.2
     port: 6379
     timeout: 5000
-    password: 123456
-  # Elasticsearch 配置
-  # todo 需替换配置
-  elasticsearch:
-    uris: http://localhost:9200
-    username: root
-    password: 123456
+    password: tencent_redis_123456
+mybatis-plus:
+  configuration:
+    # 生产环境关闭日志
+    log-impl: ''
+  global-config:
+    db-config:
+      logic-delete-field: deleted # 全局逻辑删除的实体字段名
+      logic-delete-value: 1 # 逻辑已删除值（默认为 1）
+      logic-not-delete-value: 0 # 逻辑未删除值（默认为 0）
