@@ -221,12 +221,12 @@ public class InterfaceInfoController {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
         // 判断该接口是否可以调用
-        com.xiaohe.xhapiclientsdk.model.User user = new com.xiaohe.xhapiclientsdk.model.User();
-        user.setUsername("test");
-        String username = xhApiClient.getUsernameByPost(user);
-        if (StringUtils.isBlank(username)) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "接口验证失败");
-        }
+//        com.xiaohe.xhapiclientsdk.model.User user = new com.xiaohe.xhapiclientsdk.model.User();
+//        user.setUsername("test");
+//        String username = xhApiClient.getUsernameByPost(user);
+//        if (StringUtils.isBlank(username)) {
+//            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "接口验证失败");
+//        }
         // 仅本人或管理员可修改
         InterfaceInfo interfaceInfo = new InterfaceInfo();
         interfaceInfo.setId(id);

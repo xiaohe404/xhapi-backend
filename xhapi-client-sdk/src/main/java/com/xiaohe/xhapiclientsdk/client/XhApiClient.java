@@ -13,8 +13,8 @@ import java.util.Map;
 
 public class XhApiClient {
 
-//    private static final String GATEWAY_HOST = "http://localhost:8090";
-    private static final String GATEWAY_HOST = "http://10.0.16.2:8090";
+    private static final String GATEWAY_HOST = "http://localhost:8090";
+//    private static final String GATEWAY_HOST = "http://10.0.16.2:8090";
 
     private String accessKey;
 
@@ -23,6 +23,17 @@ public class XhApiClient {
     public XhApiClient(String accessKey, String secretKey) {
         this.accessKey = accessKey;
         this.secretKey = secretKey;
+    }
+
+    private Map<String, String> getHeaderMap(String body) {
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("accessKey", accessKey);
+//        hashMap.put("secretKey", secretKey);
+        hashMap.put("nonce", RandomUtil.randomNumbers(4));
+        hashMap.put("timestamp", String.valueOf(System.currentTimeMillis()));
+        hashMap.put("body", URLEncodeUtil.encode(body));
+        hashMap.put("sign", SignUtils.genSign(body, secretKey));
+        return hashMap;
     }
 
     public String getNameGet(String name) {
@@ -38,17 +49,6 @@ public class XhApiClient {
         paramMap.put("name", name);
         String result = HttpUtil.post(GATEWAY_HOST + "/api/name/", paramMap);
         return result;
-    }
-
-    private Map<String, String> getHeaderMap(String body) {
-        Map<String, String> hashMap = new HashMap<>();
-        hashMap.put("accessKey", accessKey);
-//        hashMap.put("secretKey", secretKey);
-        hashMap.put("nonce", RandomUtil.randomNumbers(4));
-        hashMap.put("timestamp", String.valueOf(System.currentTimeMillis()));
-        hashMap.put("body", URLEncodeUtil.encode(body));
-        hashMap.put("sign", SignUtils.genSign(body, secretKey));
-        return hashMap;
     }
 
     public String getUsernameByPost(User user) {

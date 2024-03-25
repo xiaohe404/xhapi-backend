@@ -1,6 +1,5 @@
 package com.xiaohe.xhapiinterface.controller;
 
-import cn.hutool.crypto.digest.DigestUtil;
 import com.xiaohe.xhapiclientsdk.model.User;
 import org.springframework.web.bind.annotation.*;
 

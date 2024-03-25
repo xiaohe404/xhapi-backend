@@ -30,23 +30,12 @@ mybatis-plus:
   configuration:
     # 生产环境关闭日志
     log-impl: ''
-  global-config:
-    db-config:
-      logic-delete-field: deleted # 全局逻辑删除的实体字段名
-      logic-delete-value: 1 # 逻辑已删除值（默认为 1）
-      logic-not-delete-value: 0 # 逻辑未删除值（默认为 0）
-#测试 API Client
-xhapi:
-  client:
-    access-key: xiaohe
-    secret-key: qwertyuiop
 dubbo:
   application:
     name: xhapi-backend-provider
   registry:
     id: nacos-registry
     address: nacos://10.0.16.2:8848
-
 knife4j:
   # 开启增强配置
   enable: true

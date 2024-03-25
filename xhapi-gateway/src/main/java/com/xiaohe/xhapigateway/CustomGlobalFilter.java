@@ -37,8 +37,8 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     private static final List<String> IP_WHITE_LIST
             = new ArrayList<>(Arrays.asList("127.0.0.1", "10.0.16.2"));
 
-//    private static final String INTERFACE_HOST = "http://localhost:8123";
-    private static final String INTERFACE_HOST = "http://10.0.16.2:8123";
+    private static final String INTERFACE_HOST = "http://localhost:8123";
+//    private static final String INTERFACE_HOST = "http://10.0.16.2:8123";
 
     @DubboReference
     private InnerUserService innerUserService;
@@ -191,7 +191,6 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
             return chain.filter(exchange);
         }
     }
-
 
     @Override
     public int getOrder() {
